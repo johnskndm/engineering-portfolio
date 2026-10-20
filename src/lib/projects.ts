@@ -13,7 +13,7 @@ import standPivot from "../../public/projects/laptop-stand/pivot-joint-detail.pn
 // Golf club face — photos of the machined part + CAD detail
 import clubAngle from "../../public/projects/golf-club-face/machined-face-angle.jpg";
 import clubFace from "../../public/projects/golf-club-face/machined-face-front.jpg";
-import clubCad from "../../public/projects/golf-club-face/cad-pyramid-pattern.png";
+import clubIllustration from "../../public/projects/golf-club-face/golffacecnc.png";
 
 /**
  * PROJECT CONTENT
@@ -28,6 +28,8 @@ export type ProjectImage = {
   src: StaticImageData;
   alt: string;
   caption: string;
+  /** Small corner tag on mounted images (cards/heroes), which have no caption. */
+  tag?: string;
 };
 
 /** Background behind an image when it is shown inside a framed panel. */
@@ -64,6 +66,13 @@ export type Project = {
 
 const cadMount: Mount = { bg: "#ffffff", padded: true };
 const photoMount: Mount = { bg: "#e9e6e0", padded: true };
+
+const clubIllustrationImage: ProjectImage = {
+  src: clubIllustration,
+  alt: "AI-generated example illustration of a golf club face with a pyramidal texture",
+  caption: "Example illustration of the pyramidal face design (AI-generated)",
+  tag: "AI-generated example",
+};
 
 const standHero = {
   src: standMid,
@@ -210,10 +219,8 @@ export const projects: Project[] = [
       aspect: "aspect-[4/5] sm:aspect-[16/10]",
     },
     cover: {
-      src: clubCad,
-      alt: "CAD model of the club face showing the grid of pyramidal features with a dimensioned detail view",
-      caption: "CAD model of the pyramidal face pattern",
-      mount: { bg: "#2b2d31", padded: false },
+      ...clubIllustrationImage,
+      mount: { bg: "#eeeeec", padded: false },
     },
     overview: [
       "The grooves on a golf club face influence how much spin the ball carries and how it behaves after it lands. This project asked a simple question: what happens if the conventional groove pattern is replaced with a pyramidal geometry?",
@@ -258,16 +265,12 @@ export const projects: Project[] = [
       "How toolpath choices shape what geometry is actually achievable",
       "Designing a simple comparative test and being honest about what it can and can't show",
     ],
-    galleryTitle: "From CAD to machined part",
+    galleryTitle: "From design to machined part",
     gallery: [
       {
         title: "Design to part",
         images: [
-          {
-            src: clubCad,
-            alt: "CAD model of the club face showing the grid of pyramidal features with a dimensioned detail view",
-            caption: "CAD model with a dimensioned detail of the pyramid geometry",
-          },
+          clubIllustrationImage,
           {
             src: clubFace,
             alt: "Face-on photo of the machined club face showing the diamond pattern of pyramids",

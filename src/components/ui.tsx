@@ -97,6 +97,15 @@ export function PlaceholderTag({ children }: { children: ReactNode }) {
   );
 }
 
+/** Small, low-key label in the corner of an image. */
+function ImageTag({ children }: { children: ReactNode }) {
+  return (
+    <span className="pointer-events-none absolute bottom-2.5 right-2.5 rounded-full bg-white/75 px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-muted backdrop-blur-sm sm:text-[10px]">
+      {children}
+    </span>
+  );
+}
+
 /**
  * Shows an image whole (never cropped) inside a framed panel.
  * With `aspect` the panel has a fixed shape and the image is fitted inside it;
@@ -142,6 +151,7 @@ export function MountedImage({
           className="object-contain"
         />
       </div>
+      {image.tag && <ImageTag>{image.tag}</ImageTag>}
     </div>
   );
 }
