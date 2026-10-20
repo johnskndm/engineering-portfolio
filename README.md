@@ -22,7 +22,7 @@ Production check: `npm run build && npm start`.
 | Resume PDF | `public/resume/Jacob-Johnson-Resume.pdf` |
 | Resume phone preview | `public/resume/resume-preview.png` — page 1 of the PDF, shown on phones (mobile browsers can't embed PDFs). **Regenerate it whenever you replace the PDF:** `qlmanage -t -s 1700 -o /tmp public/resume/Jacob-Johnson-Resume.pdf && mv /tmp/Jacob-Johnson-Resume.pdf.png public/resume/resume-preview.png` |
 | Project images | `public/projects/<project>/` — imported at the top of `src/lib/projects.ts` (hero, card cover, gallery rows) |
-| Headshot (placeholder) | `public/images/headshot.jpg`, then replace `<PlaceholderFigure>` in `src/app/about/page.tsx` |
+| Headshot | `public/images/headshot.jpg` (imported in `src/app/about/page.tsx`) |
 | Project text | `src/lib/projects.ts` |
 
 Tip: macOS screenshot filenames contain an invisible special space before "AM/PM" that breaks imports — rename new screenshots to simple names like `assembly-front.png`.

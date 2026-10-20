@@ -97,47 +97,6 @@ export function PlaceholderTag({ children }: { children: ReactNode }) {
   );
 }
 
-/** Blueprint-style stand-in for an image that hasn't been added yet. */
-export function PlaceholderFigure({
-  label,
-  suggestedPath,
-  aspect = "aspect-[4/3]",
-}: {
-  label: string;
-  suggestedPath: string;
-  aspect?: string;
-}) {
-  return (
-    <div
-      role="img"
-      aria-label={`Image placeholder: ${label}`}
-      className={`blueprint relative flex flex-col items-center justify-center overflow-hidden rounded-xl border border-line p-6 text-center ${aspect}`}
-    >
-      {[
-        "left-3 top-3 border-l border-t",
-        "right-3 top-3 border-r border-t",
-        "left-3 bottom-3 border-l border-b",
-        "right-3 bottom-3 border-r border-b",
-      ].map((pos) => (
-        <span
-          key={pos}
-          aria-hidden="true"
-          className={`absolute h-4 w-4 border-ink/40 ${pos}`}
-        />
-      ))}
-      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
-        Image placeholder
-      </span>
-      <span className="mt-2 max-w-xs text-sm font-medium text-ink/80">
-        {label}
-      </span>
-      <span className="mt-2 break-all font-mono text-[10px] text-muted">
-        public{suggestedPath}
-      </span>
-    </div>
-  );
-}
-
 /**
  * Shows an image whole (never cropped) inside a framed panel.
  * With `aspect` the panel has a fixed shape and the image is fitted inside it;

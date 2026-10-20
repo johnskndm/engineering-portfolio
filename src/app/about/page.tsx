@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import { Briefcase, Dumbbell, GraduationCap } from "lucide-react";
 import { Reveal } from "@/components/reveal";
-import {
-  ButtonLink,
-  Container,
-  Eyebrow,
-  PlaceholderFigure,
-} from "@/components/ui";
+import { ButtonLink, Container, Eyebrow } from "@/components/ui";
 import { site, skills } from "@/lib/site";
+import headshot from "../../../public/images/headshot.jpg";
 
 export const metadata: Metadata = {
   title: "About",
@@ -37,6 +35,24 @@ const qualities = [
   {
     title: "Rapid learning",
     body: "I learn new technical tools quickly — across six CAD and CAM platforms, three programming languages, and AI-assisted development with Claude Code.",
+  },
+];
+
+const beyond = [
+  {
+    title: "Engineering",
+    Icon: GraduationCap,
+    body: "I'm a full-time Applied Engineering Sciences student at Michigan State University, passionate about product design, CAD, manufacturing, and continuously developing new technical skills.",
+  },
+  {
+    title: "Work",
+    Icon: Briefcase,
+    body: "Alongside my engineering coursework, I work approximately 40 hours per week as a server at Cooper's Hawk Winery & Restaurants. Balancing both responsibilities has strengthened my time management, communication skills, adaptability, and ability to perform in fast-paced environments.",
+  },
+  {
+    title: "Fitness & Nutrition",
+    Icon: Dumbbell,
+    body: "Outside of school and work, I prioritize staying active, consistently training in the gym, and learning about nutrition. Fitness is a personal interest that helps me maintain my well-being and work toward my own goals.",
   },
 ];
 
@@ -74,13 +90,17 @@ export default function AboutPage() {
           </div>
         </div>
         <div className="rise" style={{ animationDelay: "220ms" }}>
-          {/* Headshot: save it as public/images/headshot.jpg and swap this
-              placeholder for <Image src="/images/headshot.jpg" … /> */}
-          <PlaceholderFigure
-            label="Professional headshot"
-            suggestedPath="/images/headshot.jpg"
-            aspect="aspect-[4/5]"
-          />
+          <div className="relative mx-auto aspect-[4/5] max-w-md overflow-hidden rounded-xl border border-line bg-[#d9d6cf] lg:max-w-none">
+            <Image
+              src={headshot}
+              alt={`Portrait of ${site.name}`}
+              fill
+              preload
+              placeholder="blur"
+              sizes="(min-width: 1024px) 420px, (min-width: 448px) 448px, 100vw"
+              className="object-cover object-[50%_30%]"
+            />
+          </div>
         </div>
       </Container>
 
@@ -160,6 +180,50 @@ export default function AboutPage() {
               </Reveal>
             ))}
           </div>
+        </Container>
+      </section>
+
+      {/* Beyond engineering */}
+      <section
+        aria-labelledby="beyond-heading"
+        className="border-t border-line bg-surface"
+      >
+        <Container className="py-20 sm:py-24">
+          <div className="grid gap-6 md:grid-cols-[1fr_2fr] md:gap-10">
+            <Eyebrow>Outside the classroom</Eyebrow>
+            <div>
+              <h2
+                id="beyond-heading"
+                className="text-3xl font-semibold tracking-tight sm:text-4xl"
+              >
+                Beyond Engineering
+              </h2>
+              <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">
+                Engineering is a major part of my life, but the commitments and
+                interests outside the classroom are just as important in shaping
+                who I am.
+              </p>
+            </div>
+          </div>
+
+          <Reveal>
+            <ul className="mt-14 grid divide-y divide-line border-y border-line md:grid-cols-3 md:divide-x md:divide-y-0">
+              {beyond.map(({ title, body, Icon }) => (
+                <li
+                  key={title}
+                  className="py-8 md:px-8 md:py-10 md:first:pl-0 md:last:pr-0"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink">
+                    <Icon aria-hidden="true" size={18} strokeWidth={1.5} />
+                  </span>
+                  <h3 className="mt-6 text-xl font-semibold tracking-tight">
+                    {title}
+                  </h3>
+                  <p className="mt-3 leading-relaxed text-muted">{body}</p>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </Container>
       </section>
 
